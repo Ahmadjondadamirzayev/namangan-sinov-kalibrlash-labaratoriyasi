@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Namangan sinov va kalibrlash laboratoriyasi</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:var(--tg-theme-bg-color,#fff);--tx:var(--tg-theme-text-color,#1a1a1a);--hint:var(--tg-theme-hint-color,#6b7280);--btn:var(--tg-theme-button-color,#2563eb);--btx:var(--tg-theme-button-text-color,#fff);--card:var(--tg-theme-secondary-bg-color,#f3f4f6)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--tx)}
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--card);position:sticky;top:0;z-index:5}
+header img{height:44px;max-width:100px;object-fit:contain}header h1{font-size:15px;margin:0;line-height:1.25}
+nav{display:flex;gap:8px;padding:12px 16px}
+nav button{flex:1;padding:10px;border:0;border-radius:10px;background:var(--card);color:var(--tx);font-size:15px}
+nav button.on{background:var(--btn);color:var(--btx)}
+main{padding:0 16px 32px}.hide{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.b{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:15px}.card p{margin:0;font-size:13px;color:var(--hint);flex:1}
+.price{font-weight:700;font-size:16px}
+.pr{background:var(--btn);color:var(--btx);border:0;border-radius:10px;padding:11px;font-size:15px;width:100%}
+.del{background:#dc2626;color:#fff;border:0;border-radius:8px;padding:8px;font-size:13px}
+form{display:grid;gap:8px;background:var(--card);padding:12px;border-radius:14px;margin-bottom:14px}
+input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #9994;background:var(--bg);color:var(--tx);font:inherit}
+.empty{color:var(--hint);text-align:center;padding:30px 0}
+.info{background:var(--card);border-radius:14px;padding:12px;margin:12px 0;font-size:14px;line-height:1.6}
+.info ul{margin:6px 0 0;padding-left:18px}h2{font-size:18px;margin:4px 0 8px}h3.sec{font-size:15px;margin:16px 0 0}
+a.pr{display:block;text-align:center;text-decoration:none;margin-top:8px}
+.cert{width:100%;border-radius:12px;margin-top:8px;border:1px solid #9994}
+</style></head><body>
+<header>
+  <img id="logo" src="/static/logo.png" alt="" onerror="if(!this.dataset.t){this.dataset.t=1;this.src='/static/logo.svg'}else{this.style.display='none'}">
+  <h1>Namangan sinov va kalibrlash laboratoriyasi</h1>
+</header>
+<nav><button id="t1" class="on" onclick="tab(1)">Asosiy</button><button id="t2" onclick="tab(2)">Uskunalar</button></nav>
+<main>
+  <section id="s1">
+    <h2>Laboratoriya haqida</h2>
+    <p>"Namangan sinov va kalibrlash laboratoriyasi" MChJ — qiyoslash laboratoriyasi. O'zbekiston akkreditatsiya markazi (O'ZAK) tomonidan akkreditatsiyadan o'tgan.</p>
+    <div class="info">
+      <b>Akkreditatsiya</b><br>
+      Reestr raqami: O'ZAK.QL.0149<br>
+      Standart: O'z DSt 3444:2020<br>
+      Akkreditatsiya sanasi: 14.07.2025<br>
+      Amal qilish muddati: 16.07.2030
+    </div>
+    <h3 class="sec">Faoliyat sohasi</h3>
+    <div class="info">
+      <ul>
+        <li>Gorizontal silindrik po'latli rezervuarlar: 0 dan 200 m³ gacha (geometrik usul), 0 dan 25 m³ gacha (hajmiy usul)</li>
+        <li>Vertikal silindrik po'latli rezervuarlar: 0 dan 10 000 m³ gacha (geometrik usul)</li>
+        <li>AYQSH, AGKSH va neftbazalarda ishlatiladigan rezervuarlarni sotish</li>
+      </ul>
+    </div>
+    <h3 class="sec">Bog'lanish / Profil</h3>
+    <div class="info">
+      <b>Telegram:</b> @DMYA_4779<br>
+      <b>Telefon:</b> +998996904779<br>
+      <b>Email:</b> muhammadyusufdadamirzayev@gmail.com<br>
+      <b>Telegram kanal:</b> <a href="https://t.me/Namangan_sinov_kalibrlash" target="_blank" style="color:var(--btn);text-decoration:none;">t.me/Namangan_sinov_kalibrlash</a><br>
+      <b>Instagram:</b> <a href="https://instagram.com/namangan_skl" target="_blank" style="color:var(--btn);text-decoration:none;">@namangan_skl</a><br>
+      <b>Manzil:</b> Namangan shahri, Nodira ko'chasi, 9-uy
+    </div>
+    <a class="pr" href="tel:+998996904779">📞 Qo'ng'iroq qilish (+998996904779)</a>
+    <button class="pr" style="margin-top:8px" onclick="tg.openTelegramLink('https://t.me/DMYA_4779')">💬 Telegram orqali yozish (@DMYA_4779)</button>
+    <a class="pr" style="margin-top:8px;background:#E1306C" href="https://instagram.com/namangan_skl" target="_blank">📸 Instagram sahifamiz</a>
+    <a class="pr" style="margin-top:8px;background:#4b5563" href="mailto:muhammadyusufdadamirzayev@gmail.com">📧 Email orqali yozish</a>
+    <h3 class="sec">Akkreditatsiya guvohnomasi</h3>
+    <img class="cert" src="/static/guvohnoma.png" alt="Akkreditatsiya guvohnomasi">
+  </section>
+  <section id="s2" class="hide">
+    <form id="adm" class="hide">
+      <b>Uskuna qo'shish (admin)</b>
+      <input name="name" placeholder="Uskuna nomi" required>
+      <textarea name="use" rows="3" placeholder="Nima uchun ishlatiladi?"></textarea>
+      <input name="price" placeholder="Narxi (masalan: 1 500 000 so'm)">
+      <input name="image" type="file" accept="image/*,.svg" required>
+      <button class="pr" type="submit">Qo'shish</button>
+    </form>
+    <div id="grid" class="grid"></div>
+  </section>
+</main>
+<script>
+const tg=Telegram.WebApp;tg.ready();tg.expand();
+const H={'X-Init-Data':tg.initData||''},$=s=>document.querySelector(s);
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function tab(n){[1,2].forEach(i=>{$('#s'+i).classList.toggle('hide',i!=n);$('#t'+i).classList.toggle('on',i==n)})}
+async function load(){
+  const d=await (await fetch('/api/items',{headers:H})).json(),g=$('#grid');
+  $('#adm').classList.toggle('hide',!d.is_admin);g.replaceChildren();
+  if(!d.items.length){g.append(el('div','empty',"Hozircha uskunalar yo'q"));return}
+  d.items.forEach(it=>{
+    const c=el('div','card'),im=el('img');im.src='/uploads/'+it.image;im.alt=it.name;
+    const b=el('div','b');b.append(el('h3',0,it.name),el('p',0,it.use),el('div','price',it.price));
+    if(d.is_admin){const x=el('button','del',"O'chirish");x.onclick=()=>tg.showConfirm("O'chirilsinmi?",async ok=>{
+      if(ok){await fetch('/api/items/'+it.id,{method:'DELETE',headers:H});load()}});b.append(x)}
+    c.append(im,b);g.append(c)})
+}
+$('#adm').onsubmit=async e=>{
+  e.preventDefault();const f=e.target,r=await fetch('/api/items',{method:'POST',headers:H,body:new FormData(f)});
+  if(r.ok){f.reset();load()}else tg.showAlert(await r.text()||'Xatolik')
+};
+load();
+</script></body></html>

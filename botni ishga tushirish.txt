@@ -1,0 +1,2 @@
+export BOT_TOKEN="8935160715:AAEJHKsszG1re3aBA8V43-Yf3xZpsebjthU"
+python bot.py

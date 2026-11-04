@@ -1,0 +1,25 @@
+:root{--bg:var(--tg-theme-bg-color,#fff);--tx:var(--tg-theme-text-color,#1a1a1a);--hint:var(--tg-theme-hint-color,#6b7280);--btn:var(--tg-theme-button-color,#2563eb);--btx:var(--tg-theme-button-text-color,#fff);--card:var(--tg-theme-secondary-bg-color,#f3f4f6)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--tx)}
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--card);position:sticky;top:0;z-index:5}
+header img{height:44px;max-width:100px;object-fit:contain;background:#fff;border-radius:8px}
+header h1{font-size:15px;margin:0;line-height:1.25}
+nav{display:flex;gap:8px;padding:12px 16px}
+nav button{flex:1;padding:10px;border:0;border-radius:10px;background:var(--card);color:var(--tx);font-size:15px}
+nav button.on{background:var(--btn);color:var(--btx)}
+main{padding:0 16px 32px}h2{font-size:18px;margin:4px 0 8px}h3.sec{font-size:15px;margin:16px 0 0}
+.info{background:var(--card);border-radius:14px;padding:12px;margin:12px 0;font-size:14px;line-height:1.6}
+.info ul{margin:6px 0 0;padding-left:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.b{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:15px}.card p{margin:0;font-size:13px;color:var(--hint);flex:1}
+.price{font-weight:700;font-size:16px}
+.pr{display:block;width:100%;text-align:center;text-decoration:none;background:var(--btn);color:var(--btx);border:0;border-radius:10px;padding:11px;font-size:15px;margin-top:8px}
+.pr:disabled{opacity:.6}
+.del{background:#dc2626;color:#fff;border:0;border-radius:8px;padding:8px;font-size:13px}
+form{display:grid;gap:8px;background:var(--card);padding:12px;border-radius:14px;margin-bottom:14px}
+input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #9994;background:var(--bg);color:var(--tx);font:inherit}
+.search{margin-bottom:12px}.prev{max-height:140px;object-fit:contain;border-radius:8px;background:#fff}
+.err{color:#dc2626;font-size:13px}.empty{color:var(--hint);text-align:center;padding:30px 0}
+.cert{width:100%;border-radius:12px;margin-top:8px;border:1px solid #9994}
