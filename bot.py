@@ -10,7 +10,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 TOKEN = os.environ.get("BOT_TOKEN", "8935160715:AAESSqm9cy1YUaK34SeaovYhZBrXmcgAl-I")
 
 # Vercel'dagi Mini App havolangiz
-MINI_APP_URL = "https://namangan-lab.vercel.app"
+MINI_APP_URL = "https://namangan-sinov-va-kalibrlash-labara.vercel.app/"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
