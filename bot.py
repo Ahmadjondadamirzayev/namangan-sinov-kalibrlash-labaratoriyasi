@@ -1,12 +1,13 @@
-
+import os
 import asyncio
 import logging
+from aiohttp import web
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
-# BotFather'dan olgan tokeningizni quyidagi qo'shtirnoq ichiga yozing
-TOKEN = "8935160715:AAESSqm9cy1YUaK34SeaovYhZBrXmcgAl-I"
+# Tokenni Render Environment Variables'dan oladi (agar yo'q bo'lsa, zaxira qiymat ishlatadi)
+TOKEN = os.environ.get("BOT_TOKEN", "8935160715:AAESSqm9cy1YUaK34SeaovYhZBrXmcgAl-I")
 
 # Vercel'dagi Mini App havolangiz
 MINI_APP_URL = "https://namangan-lab.vercel.app"
@@ -14,11 +15,12 @@ MINI_APP_URL = "https://namangan-lab.vercel.app"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
+
 def get_webapp_keyboard():
     return InlineKeyboardMarkup(inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="🌐 Laboratoriya Ilovasini Ochish", 
+                text="🌐 Laboratoriya Ilovasini Ochish",
                 web_app=WebAppInfo(url=MINI_APP_URL)
             )
         ],
@@ -27,6 +29,7 @@ def get_webapp_keyboard():
             InlineKeyboardButton(text="📞 Aloqa", callback_data="contact")
         ]
     ])
+
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
@@ -37,6 +40,7 @@ async def cmd_start(message: types.Message):
         reply_markup=get_webapp_keyboard()
     )
 
+
 @dp.message(Command("app"))
 async def cmd_app(message: types.Message):
     await message.answer(
@@ -44,6 +48,7 @@ async def cmd_app(message: types.Message):
         parse_mode="Markdown",
         reply_markup=get_webapp_keyboard()
     )
+
 
 @dp.message(Command("services"))
 async def cmd_services(message: types.Message):
@@ -54,6 +59,7 @@ async def cmd_services(message: types.Message):
         parse_mode="Markdown"
     )
 
+
 @dp.message(Command("contact"))
 async def cmd_contact(message: types.Message):
     await message.answer(
@@ -63,6 +69,7 @@ async def cmd_contact(message: types.Message):
         parse_mode="Markdown"
     )
 
+
 @dp.message(Command("profile"))
 async def cmd_profile(message: types.Message):
     await message.answer(
@@ -70,9 +77,26 @@ async def cmd_profile(message: types.Message):
         parse_mode="Markdown"
     )
 
+
+async def health_check(request):
+    return web.Response(text="Bot is running")
+
+
+async def start_web_server():
+    app = web.Application()
+    app.router.add_get("/", health_check)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8080))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+
+
 async def main():
+    await start_web_server()
     print("Bot muvaffaqiyatli ishga tushdi...")
     await dp.start_polling(bot)
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
