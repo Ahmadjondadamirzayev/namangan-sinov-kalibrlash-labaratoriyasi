@@ -78,6 +78,26 @@ async def cmd_profile(message: types.Message):
     )
 
 
+@dp.callback_query(lambda c: c.data == "profile")
+async def cb_profile(callback: types.CallbackQuery):
+    await callback.message.answer(
+        f"👤 **Foydalanuvchi ma'lumotlari:**\nID: {callback.from_user.id}\nIsm: {callback.from_user.first_name}",
+        parse_mode="Markdown"
+    )
+    await callback.answer()
+
+
+@dp.callback_query(lambda c: c.data == "contact")
+async def cb_contact(callback: types.CallbackQuery):
+    await callback.message.answer(
+        "📞 **Aloqa ma'lumotlari:**\n"
+        "Telefon: +998996904779\n"
+        "Email: muhammadyusufdadamirzayev@gmail.com",
+        parse_mode="Markdown"
+    )
+    await callback.answer()
+
+
 async def health_check(request):
     return web.Response(text="Bot is running")
 
