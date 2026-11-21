@@ -74,20 +74,41 @@ async def cmd_start(message: types.Message):
 
 @dp.message(F.text.in_(["ℹ️ Laboratoriya haqida", "Laboratoriya haqida", "/about"]))
 async def btn_about(message: types.Message):
-    text = (
-        "ℹ️ Laboratoriya haqida:\n\n"
-        "«Namangan sinov va kalibrlash» sinov laboratoriyasi neft mahsulotlari, suv va boshqa suyuqliklarni "
-        "saqlash rezervuarlarini qiyoslash hamda kalibrlash bo'yicha akkreditatsiyadan o'tgan rasmiy laboratoriya hisoblanadi.\n\n"
-        "✅ Akkreditatsiya guvohnomasi: O'ZAK.QL.0149\n"
-        "✅ Yuqori aniqlikdagi namunaviy o'lchash vositalari\n"
-        "✅ Malakali metrolog mutaxassislar\n"
-        "✅ Qonuniy asosdagi sertifikat va dalolatnomalar"
-    )
+    text = """ℹ️ Laboratoriya haqida:
+
+«Namangan sinov va kalibrlash» sinov laboratoriyasi neft mahsulotlari, suv va boshqa suyuqliklarni saqlash rezervuarlarini qiyoslash hamda kalibrlash bo'yicha akkreditatsiyadan o'tgan rasmiy laboratoriya hisoblanadi.
+
+✅ Akkreditatsiya guvohnomasi: O'ZAK.QL.0149
+✅ Yuqori aniqlikdagi namunaviy o'lchash vositalari
+✅ Malakali metrolog mutaxassislar
+✅ Qonuniy asosdagi sertifikat va dalolatnomalar"""
     await message.answer(text, reply_markup=get_main_keyboard())
 
 
 @dp.message(F.text.in_(["🛠 Xizmatlar", "Xizmatlar", "/services"]))
 async def btn_services(message: types.Message):
-    text = (
-        "🛠 Bizning xizmatlarimiz:\n\n"
-        "1️⃣ Gorizontal silind
+    text = """🛠 Bizning xizmatlarimiz:
+
+1️⃣ Gorizontal silindrik po'lat rezervuarlarni qiyoslash:
+- 0 m³ dan 200 m³ gacha — geometrik usulda
+- 0 m³ dan 25 m³ gacha — hajmiy usulda
+
+2️⃣ Vertikal silindrik po'lat rezervuarlarni qiyoslash:
+- 0 m³ dan 10 000 m³ gacha — geometrik usulda
+
+📜 Akkreditatsiya: O'ZAK davlat reestri: O'ZAK.QL.0149
+Barcha ishlar amaldagi davlat standartlari va me'yoriy talablar asosida amalga oshiriladi."""
+    await message.answer(text, reply_markup=get_main_keyboard())
+
+
+@dp.message(F.text.in_(["💰 Narxlar", "Narxlar", "/narxlar"]))
+async def btn_prices(message: types.Message):
+    text = """💰 Xizmat narxlari:
+
+Rezervuarlarni qiyoslash va kalibrlash narxi quyidagi omillarga bog'liq:
+• Rezervuar turi (gorizontal yoki vertikal)
+• Rezervuar sig'imi (hajmi, m³)
+• O'lchash usuli (geometrik yoki hajmiy)
+• Obyektning joylashgan hududi
+
+ℹ️ Aniq hisob-kitob va tijoriy taklif olish uchun @DMYA_4779 yoki +998996904779 orqali bog'laning
