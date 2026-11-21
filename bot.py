@@ -4,10 +4,17 @@ import logging
 from aiohttp import web
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import (
+    ReplyKeyboardMarkup,
+    KeyboardButton,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+)
 
 # Tokenni Render Environment Variables'dan oladi (agar yo'q bo'lsa, zaxira qiymat ishlatadi)
 TOKEN = os.environ.get("BOT_TOKEN", "8935160715:AAESSqm9cy1YUaK34SeaovYhZBrXmcgAl-I")
+
+PROFILE_URL = "https://t.me/DMYA_4779"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
@@ -22,13 +29,20 @@ def get_main_keyboard():
             ],
             [
                 KeyboardButton(text="💰 Narxlar"),
-                KeyboardButton(text="👤 Profil"),
-            ],
-            [
                 KeyboardButton(text="ℹ️ Laboratoriya haqida"),
             ],
         ],
         resize_keyboard=True,
+    )
+
+
+def get_profile_keyboard():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="👤 Profil (@DMYA_4779)", url=PROFILE_URL)
+            ]
+        ]
     )
 
 
@@ -78,16 +92,11 @@ async def btn_prices(message: types.Message):
     )
 
 
-@dp.message(F.text.in_(["👤 Profil", "Profil", "/profile"]))
-async def btn_profile(message: types.Message):
-    username = f"@{message.from_user.username}" if message.from_user.username else "Kiritilmagan"
+@dp.message(Command("profile"))
+async def cmd_profile(message: types.Message):
     await message.answer(
-        "👤 **Foydalanuvchi ma'lumotlari:**\n"
-        f"• **ID:** `{message.from_user.id}`\n"
-        f"• **Ism:** {message.from_user.first_name}\n"
-        f"• **Username:** {username}",
-        parse_mode="Markdown",
-        reply_markup=get_main_keyboard(),
+        "👤 Profilga o'tish uchun quyidagi tugmani bosing:",
+        reply_markup=get_profile_keyboard(),
     )
 
 
@@ -99,7 +108,7 @@ async def btn_about(message: types.Message):
         "📞 Telefon: +998996904779\n"
         "✉️ Email: muhammadyusufdadamirzayev@gmail.com",
         parse_mode="Markdown",
-        reply_markup=get_main_keyboard(),
+        reply_markup=get_profile_keyboard(),
     )
 
 
