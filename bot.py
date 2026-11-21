@@ -11,7 +11,6 @@ from aiogram.types import (
     InlineKeyboardButton,
 )
 
-# Tokenni Render Environment Variables'dan oladi (agar yo'q bo'lsa, zaxira qiymat ishlatadi)
 TOKEN = os.environ.get("BOT_TOKEN", "8935160715:AAESSqm9cy1YUaK34SeaovYhZBrXmcgAl-I")
 
 bot = Bot(token=TOKEN)
@@ -63,52 +62,41 @@ def get_profile_keyboard():
     )
 
 
-@dp.message(Command("start"))
-async def cmd_start(message: types.Message):
-    await message.answer(
-        "🏢 Namangan Sinov va Kalibrlash Laboratoriyasi konsultatsiya botiga xush kelibsiz!\n\n"
-        "Kerakli bo'limni pastdagi tugmalar orqali tanlang:",
-        reply_markup=get_main_keyboard(),
-    )
-
-
-@dp.message(F.text.in_(["ℹ️ Laboratoriya haqida", "Laboratoriya haqida", "/about"]))
-async def btn_about(message: types.Message):
-    text = """ℹ️ Laboratoriya haqida:
-
-«Namangan sinov va kalibrlash» sinov laboratoriyasi neft mahsulotlari, suv va boshqa suyuqliklarni saqlash rezervuarlarini qiyoslash hamda kalibrlash bo'yicha akkreditatsiyadan o'tgan rasmiy laboratoriya hisoblanadi.
-
-✅ Akkreditatsiya guvohnomasi: O'ZAK.QL.0149
-✅ Yuqori aniqlikdagi namunaviy o'lchash vositalari
-✅ Malakali metrolog mutaxassislar
-✅ Qonuniy asosdagi sertifikat va dalolatnomalar"""
-    await message.answer(text, reply_markup=get_main_keyboard())
-
-
-@dp.message(F.text.in_(["🛠 Xizmatlar", "Xizmatlar", "/services"]))
-async def btn_services(message: types.Message):
-    text = """🛠 Bizning xizmatlarimiz:
-
-1️⃣ Gorizontal silindrik po'lat rezervuarlarni qiyoslash:
-- 0 m³ dan 200 m³ gacha — geometrik usulda
-- 0 m³ dan 25 m³ gacha — hajmiy usulda
-
-2️⃣ Vertikal silindrik po'lat rezervuarlarni qiyoslash:
-- 0 m³ dan 10 000 m³ gacha — geometrik usulda
-
-📜 Akkreditatsiya: O'ZAK davlat reestri: O'ZAK.QL.0149
-Barcha ishlar amaldagi davlat standartlari va me'yoriy talablar asosida amalga oshiriladi."""
-    await message.answer(text, reply_markup=get_main_keyboard())
-
-
-@dp.message(F.text.in_(["💰 Narxlar", "Narxlar", "/narxlar"]))
-async def btn_prices(message: types.Message):
-    text = """💰 Xizmat narxlari:
-
-Rezervuarlarni qiyoslash va kalibrlash narxi quyidagi omillarga bog'liq:
-• Rezervuar turi (gorizontal yoki vertikal)
-• Rezervuar sig'imi (hajmi, m³)
-• O'lchash usuli (geometrik yoki hajmiy)
-• Obyektning joylashgan hududi
-
-ℹ️ Aniq hisob-kitob va tijoriy taklif olish uchun @DMYA_4779 yoki +998996904779 orqali bog'laning
+EQUIPMENT_DETAILS = {
+    "eq_tape": "\n".join([
+        "📏 Po'lat o'lchov lentasi va lotlar",
+        "",
+        "Rezervuarlarning geometrik o'lchamlarini va suyuqlik sathini yuqori aniqlikda o'lchash uchun davlat tekshiruvidan o'tgan namunaviy o'lchov lentalari va lotlari qo'llaniladi.",
+    ]),
+    "eq_laser": "\n".join([
+        "📐 Lazerli masofa o'lchagich (Dalmomer)",
+        "",
+        "Rezervuar devorlari, balandligi va ichki geometrik parametrlarini tezkor hamda aniq o'lchash uchun zamonaviy lazerli masofa o'lchash vositasi.",
+    ]),
+    "eq_level": "\n".join([
+        "🔭 Optik / Raqamli Nivelir va Teodolit",
+        "",
+        "Rezervuarlarning og'ishi, asosi holati va geometrik ko'rsatkichlarini geodezik/metrologik aniqlikda tekshirish uchun ishlatiladi.",
+    ]),
+    "eq_mernik": "\n".join([
+        "🧪 Namunaviy o'lchov idishlari (Merniklar)",
+        "",
+        "Hajmiy usulda rezervuarlarni qiyoslash va o'lchash vositalarini tekshirish uchun sertifikatlangan namunaviy o'lchov idishlari.",
+    ]),
+    "eq_thickness": "\n".join([
+        "🔊 Ultratovushli qalinlik o'lchagich",
+        "",
+        "Po'lat rezervuar devorlari va elementlarining qalinligini buzmaydigan usulda aniqlash uchun qo'llaniladi.",
+    ]),
+    "eq_thermo": "\n".join([
+        "🌡 Namunaviy termometr va areometrlar",
+        "",
+        "Suyuqlik harorati va zichligini aniq o'lchash hamda qiyoslash ishlarida me'yoriy ko'rsatkichlarni ta'minlash uchun ishlatiladi.",
+    ]),
+    "eq_manometer": "\n".join([
+        "📊 Namunaviy manometrlar va bosim o'lchagichlar",
+        "",
+        "Bosim o'lchash vositalarini tekshirish va kalibrlash jarayonlarida qo'llaniladigan yuqori aniqlikdagi namunaviy asboblar.",
+    ]),
+    "eq_tanks": "\n".join([
+        "🛢 Rezervuarlar sotuvi (AYQSH, AGKSH
