@@ -66,7 +66,7 @@ def get_profile_keyboard():
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
     await message.answer(
-        "🏢 **Namangan Sinov va Kalibrlash Laboratoriyasi** konsultatsiya botiga xush kelibsiz!\n\n"
+        "🏢 Namangan Sinov va Kalibrlash Laboratoriyasi konsultatsiya botiga xush kelibsiz!\n\n"
         "Kerakli bo'limni pastdagi tugmalar orqali tanlang:",
         reply_markup=get_main_keyboard(),
     )
@@ -90,21 +90,4 @@ async def btn_about(message: types.Message):
 async def btn_services(message: types.Message):
     text = (
         "🛠 Bizning xizmatlarimiz:\n\n"
-        "1️⃣ Gorizontal silindrik po'lat rezervuarlarni qiyoslash:\n"
-        "- 0 m³ dan 200 m³ gacha — geometrik usulda\n"
-        "- 0 m³ dan 25 m³ gacha — hajmiy usulda\n\n"
-        "2️⃣ Vertikal silindrik po'lat rezervuarlarni qiyoslash:\n"
-        "- 0 m³ dan 10 000 m³ gacha — geometrik usulda\n\n"
-        "📜 Akkreditatsiya: O'ZAK davlat reestri: O'ZAK.QL.0149\n"
-        "Barcha ishlar amaldagi davlat standartlari va me'yoriy talablar asosida amalga oshiriladi."
-    )
-    await message.answer(text, reply_markup=get_main_keyboard())
-
-
-@dp.message(F.text.in_(["💰 Narxlar", "Narxlar", "/narxlar"]))
-async def btn_prices(message: types.Message):
-    text = (
-        "💰 Xizmat narxlari:\n\n"
-        "Rezervuarlarni qiyoslash va kalibrlash narxi quyidagi omillarga bog'liq:\n"
-        "• Rezervuar turi (gorizontal yoki vertikal)\n"
-        "• Rezervuar sig'imi (hajmi, m³)\n"
+        "1️⃣ Gorizontal silind
